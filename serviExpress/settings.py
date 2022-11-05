@@ -38,7 +38,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'core',
+    'crispy_forms', #Para formularios
 ]
+CRISPY_TEMPLATE_PACK = 'bootstrap4'   #Para que se vea mejor el formulario
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

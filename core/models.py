@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime
 
 # Create your models here.
 
@@ -57,7 +58,7 @@ class Cuenta(models.Model):
 
 class Reserva(models.Model):
     id_reserva= models.IntegerField(primary_key=True, verbose_name='ID RESERVA')
-    fecha = models.DateTimeField(auto_now_add= False, auto_now= False, blank = True, null=True, verbose_name='FECHA')
+    fecha = models.DateField(auto_now_add= False, auto_now= False, blank = True, null=True, verbose_name='FECHA')
     servicio = models.ForeignKey(Servicio, on_delete=models.PROTECT, verbose_name='SERVICIO')
     hora = models.IntegerField(choices = opc_hora, verbose_name='HORA')
     cuenta = models.ForeignKey(Cuenta, on_delete=models.CASCADE)
