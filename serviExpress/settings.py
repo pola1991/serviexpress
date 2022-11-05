@@ -77,7 +77,7 @@ WSGI_APPLICATION = 'serviExpress.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'serviexpress1',
+        'NAME': 'serviexpress',
         'USER': 'root',
         'PASSWORD': 'root',
         'HOST':'127.0.0.1',
