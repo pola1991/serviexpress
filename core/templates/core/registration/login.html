@@ -1,43 +1,59 @@
 {% load static %}
-{% load crispy_forms_tags %}
+
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar Sesión</title>
     <link rel="stylesheet" href="{% static 'core/css/style.css' %}">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <title>Jardinería</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We" crossorigin="anonymous">
 </head>
 <body>
     <div class="container">
-        <br>
-        <br>
         <div class="row">
-            <div class="col-12 col-md-6 offset-md-3">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="text-success text-center fw-bolder" >Jardinería</h2>
-                        <h3 class="text-success text-center" >Iniciar Sesión</h3>
-                        <hr>
-                        <form action="" method="post">
-                            {% csrf_token %}
-                            
-                            {{ form | crispy }}
-
-                            <p class="mt-3 text-center fs-6">No tengo cuenta <a class="" href="{% url 'registro' %}">Registrarme</a></p>
-
-                            <div class="d-flex justify-content-between">
-                                <a class=" mt-3 btn btn-outline-dark" href="{% url 'home' %}">Volver al inicio</a>
-                                <input type="submit" class="mt-3 btn btn-success float-right" value="Iniciar Sesión">
-                            </div>
-                        </form>
+            <div class="col">
+                <form>
+                    <h1>Iniciar Sesión</h1>
+                    <div class="form-group">
+                        <label for="">Usuario:</label>
+                        <input type="text"  id="" class="form-control">
                     </div>
+                    <div class="form-group">
+                        <label for="">Contraseña:</label>
+                        <input type="text"  id="" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-primary" style="display: block; margin: 0 auto;" href="{% url 'index' %}">Iniciar Sesión</button>
+                    </div>
+            
+                </form>
+            </div>
+
+            <div class="col">
+                <img src="{% static 'core/img/taller.jpg' %}" alt="" style="display: block; margin: 0 auto;">
+                
+                <div>
+                  <h2>ServiExpress</h2>
                 </div>
+                
             </div>
         </div>
+
+
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js"
+        integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF"
+        crossorigin="anonymous"></script>
+    
+    
 </body>
 </html>

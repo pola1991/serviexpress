@@ -7,3 +7,13 @@ from django.db.models import Q
 
 def index(request):
     return render(request, 'core/index.html')
+
+
+def login(request):
+    return render(request, 'core/registration/login.html')
+
+
+def registro(request):
+    return render(request, 'core/registration/registro.html')
+
+
