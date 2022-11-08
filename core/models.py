@@ -5,7 +5,7 @@ from datetime import datetime
 # Create your models here.
 
 class Empleado(models.Model):
-    id_empleado= models.IntegerField(primary_key=True, verbose_name='ID EMPLEADO')
+    id_empleado= models.AutoField(primary_key=True)
     nombre_completo= models.CharField(max_length=40,verbose_name='NOMBRE COMPLETO')
     rut= models.IntegerField(verbose_name='RUT')
     dv_rut= models.IntegerField(verbose_name='DIGITO VERIFICADOR')
@@ -16,12 +16,11 @@ class Empleado(models.Model):
         return self.nombre_completo
 
 class Servicio(models.Model):
-    id_servicio= models.IntegerField(primary_key=True, verbose_name='ID SERVICIO')
+    id_servicio= models.AutoField(primary_key=True)
     nombre_servicio = models.CharField(max_length=30, verbose_name='NOMBRE SERVICIO')
     tipo = models.CharField(max_length=30, null=True, verbose_name='TIPO')
     precio = models.IntegerField(null=True, verbose_name='PRECIO')
-    empleado = models.ForeignKey(Empleado, null=True ,on_delete=models.CASCADE)
-
+    usuario = models.ForeignKey(User, null= True, on_delete=models.PROTECT, related_name='USUARIO')
 
     def __str__(self):
         return self.nombre_servicio
@@ -37,7 +36,7 @@ opc_hora = [
 ]
 
 class Cliente(models.Model):
-    id_cliente= models.IntegerField(primary_key=True, verbose_name='ID CLIENTE')
+    id_cliente= models.AutoField(primary_key=True)
     nombre_completo= models.CharField(max_length=40,verbose_name='NOMBRE COMPLETO')
     rut= models.IntegerField(verbose_name='RUT')
     dv_rut= models.IntegerField(verbose_name='DIGITO VERIFICADOR')
@@ -47,7 +46,7 @@ class Cliente(models.Model):
         return self.nombre_completo
 
 class Cuenta(models.Model):
-    id_cuenta =  models.IntegerField(primary_key=True, verbose_name='ID CUENTA')
+    id_cuenta =  models.AutoField(primary_key=True)
     usuario = models.CharField(max_length=30, verbose_name='USUARIO')
     correo = models.EmailField(verbose_name='MAIL')
     password = models.CharField(max_length=20, verbose_name='PASSWORD')
@@ -56,17 +55,17 @@ class Cuenta(models.Model):
     def __str__(self):
         return self.usuario
 
+
+
 class Reserva(models.Model):
-    id_reserva= models.IntegerField(primary_key=True, verbose_name='ID RESERVA')
+    id_reserva= models.AutoField(primary_key=True)
     fecha = models.DateField(auto_now_add= False, auto_now= False, blank = True, null=True, verbose_name='FECHA')
     servicio = models.ForeignKey(Servicio, on_delete=models.PROTECT, verbose_name='SERVICIO')
     hora = models.IntegerField(choices = opc_hora, verbose_name='HORA')
-    cuenta = models.ForeignKey(Cuenta, on_delete=models.CASCADE)
+    confirmada = models.BooleanField(default=False)
+   
+    
 
     def __str__(self):
         return self.fecha
-
-
-
-
 

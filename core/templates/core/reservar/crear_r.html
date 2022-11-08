@@ -1,32 +1,71 @@
+{% load static %}
+{% load crispy_forms_tags %}
 <!DOCTYPE html>
 <html lang="es">
-  {% load admin_urls %}
-  {% load crispy_forms_tags %}
-  
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+   
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>SERVIEXPRESS</title>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Veranum</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-              <a class="nav-link active" aria-current="page" href="{% url 'index'%}">Home</a>
-              <a class="nav-link" href="">Inventario</a>
-              <a class="nav-link" href="">Agregar Hotel</a>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container op-navbarlist">
+                <a href="#" class="navbar-brand op-logo">
+                    <h1 class="text-success">ServiExpress</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Menú de navegación">
+                    <span class="navbar-toggler-icon"><i class="fas fa-bars op-vanbar-toggler-icon"></i></span>
+                </button>
+                <div class="collapse navbar-collapse op-navbarlist" id="navbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a href="{% url 'index' %}" class="nav-link ml-lg-2 active text-success fw-bold">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#nosotros" class="nav-link text-success fw-bold">Nosotros</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#index" class="nav-link text-success fw-bold">Productos</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item dropdown text-success fw-bold">
+                                <a class="nav-link dropdown-toggle text-success fw-bold" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ user.username }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    
+                                    <li class="nav-item">
+                                        <a href="{% url 'crear_r' %}" class="nav-link text-success fw-bold">Reserva de horas</a>
+                                    </li>
+                                    {% if perms.app.change_read_r %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'read_r' %}" class="nav-link text-success fw-bold">Gestión de reserva de horas</a>
+                                    </li>
+                                    {% endif %}
+                                    {% if perms.app.add_crear_s %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'crear_s' %}" class="nav-link text-success fw-bold">Registrar servicios</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'logout' %}" class="nav-link text-success fw-bold">Cerrar Sesión</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{% url 'login' %}" class="nav-link text-success fw-bold">Iniciar Sesión</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
             </div>
-          </div>
-        </div>
-      </nav>
-
+        </nav>
+    </header>
       <div>
         <br>
         <div class="container, col-12 col-md-6 offset-md-3">
@@ -44,7 +83,7 @@
           </form>
           <div class="alert alert-success" role="alert">
             {{mensaje}}</div>
-          <a href=""><button class="btn btn-dark">Inventario</button></a>
+          <a href="{% url 'read_r' %}"><button class="btn btn-dark">Ver mi hora</button></a>
           </div>
           <div class="card-footer text-muted">
          

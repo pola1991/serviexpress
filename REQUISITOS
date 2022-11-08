@@ -1,5 +1,5 @@
-* inicio de sesión (MAXI)
-* Registro de usuario  (ALBERT)
-* Registrar servicio
-* Gestión de reserva de horas
-* Reserva de horas (falta que el profe lo vea)
+* inicio de sesión (MAXI)                               AUTH TODOS
+* Registro de usuario  (ALBERT)                         AUTH CLIENTE Y ADMIN
+* Registrar servicio POST                               AUTH ADMIN          
+* Gestión de reserva de horas READ                      AUTH EMPLEADO ADMIN
+* Reserva de horas (falta que el profe lo vea)  POST    AUTH CLIENTE

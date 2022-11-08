@@ -1,0 +1,132 @@
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>SERVIEXPRESS</title>
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container op-navbarlist">
+                <a href="#" class="navbar-brand op-logo">
+                    <h1 class="text-success">ServiExpress</h1>
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Menú de navegación">
+                    <span class="navbar-toggler-icon"><i class="fas fa-bars op-vanbar-toggler-icon"></i></span>
+                </button>
+                <div class="collapse navbar-collapse op-navbarlist" id="navbar">
+                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                        <li class="nav-item">
+                            <a href="{% url 'index' %}" class="nav-link ml-lg-2 active text-success fw-bold">Inicio</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#nosotros" class="nav-link text-success fw-bold">Nosotros</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                            <li class="nav-item dropdown text-success fw-bold">
+                                <a class="nav-link dropdown-toggle text-success fw-bold" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                    {{ user.username }}
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                                    {% if user.username != 'gerente1' %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'crear_r' %}" class="nav-link text-success fw-bold">Reserva de horas</a>
+                                    </li>
+                                    {% endif %}
+                                    {% if perms.core.change_reserva %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'read_r' %}" class="nav-link text-success fw-bold">Gestión de reserva de horas</a>
+                                    </li>
+                                    {% endif %}
+                                    {% if perms.core.add_servicio %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'crear_s' %}" class="nav-link text-success fw-bold">Registrar servicios</a>
+                                    </li>
+                                    {% endif %}
+                                    {% if perms.core.add_empleado %}
+                                    <li class="nav-item">
+                                        <a href="{% url 'registro' %}" class="nav-link text-success fw-bold">Registrar empleados</a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a href="{% url 'logout' %}" class="nav-link text-success fw-bold">Cerrar Sesión</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item">
+                                <a href="{% url 'login' %}" class="nav-link text-success fw-bold">Iniciar Sesión</a>
+                            </li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+            </div>
+            <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://img.freepik.com/foto-gratis/trabajador-servicio-coche-musculoso-reparando-vehiculo_146671-19705.jpg?w=900&t=st=1667704279~exp=1667704879~hmac=ad7bd6dacdc504aab8bfc2c42190e7569b45948549d2de11ab1ebf4100d3f0fd" class="d-block w-100" alt="Plantas">
+            </div>
+            <div class="carousel-item">
+                <img src="https://img.freepik.com/foto-gratis/mecanico-automoviles-trabajando-garaje-servicio-reparacion_146671-19690.jpg?w=900&t=st=1667704418~exp=1667705018~hmac=9b82430b7b9b81ae78f6a61f9cf5e4202def2ad70980e2a5ae0861cd30bb8c7c" class="d-block w-100" alt="Cactus">
+            </div>
+            <div class="carousel-item">
+                <img src="https://img.freepik.com/foto-gratis/trabajador-servicio-coche-musculoso-reparando-vehiculo_146671-19603.jpg?w=900&t=st=1667704474~exp=1667705074~hmac=8076f00f7d667e024b2a2b756f75870ad0d2f17d2933e575fbf806f72383538f" class="d-block w-100" alt="Jardinero">
+            </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+            </button>
+        </div>
+        <hr>
+        <div class="row" id="nosotros">
+            <h2 class="text-center fs-1 text-success">Nosotros</h2>
+            <p class="fs-5 text-center">Adipisicing pariatur amet aute anim ut magna laboris commodo Lorem mollit ullamco 
+                reprehenderit sint. Fugiat exercitation enim sunt pariatur exercitation irure ipsum eu commodo 
+                elit in. Sit esse sint veniam veniam laboris consequat consectetur. Cillum dolor dolor minim 
+                labore fugiat laborum.
+            <br>
+            <br>
+            Eu non velit commodo duis dolore ipsum esse fugiat consectetur in fugiat fugiat pariatur. Mollit 
+            ea cillum in esse qui veniam proident ipsum ullamco cupidatat fugiat nulla. Consectetur esse 
+            cupidatat sint dolore ut ut ea sunt dolor. Laboris aute exercitation mollit sit est mollit aliqua
+             sit id. Id commodo aute eu tempor Lorem labore. Adipisicing dolor ullamco velit dolor enim sint
+              labore nisi aliquip pariatur cillum aliquip.
+            <br>
+            <br>
+            Officia nostrud duis sunt ut sit aute quis dolore occaecat voluptate pariatur non. Adipisicing 
+            eiusmod anim ut eiusmod enim sunt ullamco consequat occaecat ullamco. Non qui fugiat veniam eu 
+            veniam cillum. Tempor ea dolor adipisicing in qui quis.
+            <br>
+            <br>
+            Velit ad labore adipisicing culpa exercitation voluptate adipisicing deserunt reprehenderit 
+            laboris laborum duis. Elit proident excepteur cillum id adipisicing ex consequat duis mollit cillum. 
+            Laborum ad laborum fugiat tempor incididunt do amet amet duis. Anim duis consequat labore mollit
+             Laboris in magna quis aute mollit et.</p>
+             
+        </div>
+        <hr>
+       
+
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
